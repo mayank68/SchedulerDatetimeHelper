@@ -13,18 +13,18 @@ namespace DateTimeRangeFinder
             DateInput dateInput = new DateInput()
             {
                 StartDateTime = DateTime.Now,
-                EndDateTime = DateTime.Now.AddHours(3).AddMinutes(30),
-                UntillDate = DateTime.Now.AddDays(230),
+                EndDateTime = DateTime.Now.AddHours(2),
+                UntillDate = DateTime.Now.AddYears(2),
                 DaysOfWeek = "MO,TU,WE",
                 isEndDateDefined = true,
                 frequency=Helper.Frequency.Monthly,
                 Occurance=5,
-                DayName= "Sunday",
-                DayFormat= "fourth",
-                WeekDay=2,
-                isWeekDay=false
-
-
+                DayName= "ss",
+                DayFormat= "third",
+				//Day number say this is friday
+                WeekDay=0,
+				//This is for weekday option
+                isWeekDay=true
             };
             Console.WriteLine("-------------Input-----------------");
             Console.WriteLine("start time:"+ dateInput.StartDateTime);
@@ -34,12 +34,16 @@ namespace DateTimeRangeFinder
             Console.WriteLine("End date:" + dateInput.isEndDateDefined);
             Console.WriteLine("Occurance:" + dateInput.Occurance);
             Console.WriteLine("day name:" + dateInput.DayName);
-            Console.WriteLine("day format:" + dateInput.DayFormat);
-            Console.WriteLine("-------------Input-----------------");
-            //var output = Helper.DateTimeHelper.FindDateRangeDailyAndWeekly(dateInput.isEndDateDefined, dateInput.StartDateTime, dateInput.EndDateTime, dateInput.Occurance, dateInput.UntillDate, dateInput.frequency, dateInput.DaysOfWeek, 3);
-            var output = Helper.DateTimeHelper.FindDateRange_Monthly(dateInput.isEndDateDefined, dateInput.StartDateTime, dateInput.EndDateTime, dateInput.Occurance, dateInput.UntillDate, dateInput.frequency, dateInput.DaysOfWeek,24,false,dateInput.DayFormat, dateInput.DayName, dateInput.isWeekDay, dateInput.WeekDay);
-            Console.WriteLine("-------------OutPut-----------------");
-            foreach (var item in output)
+            Console.WriteLine("WeekDay:" + dateInput.WeekDay);
+			Console.WriteLine("day format:" + dateInput.DayFormat);
+			Console.WriteLine("isWeekDay:" + dateInput.isWeekDay);
+			Console.WriteLine("-------------Input-----------------");
+			//var output = Helper.DateTimeHelper.FindDateRangeDailyAndWeekly(dateInput.isEndDateDefined, dateInput.StartDateTime, dateInput.EndDateTime, dateInput.Occurance, dateInput.UntillDate, dateInput.frequency, dateInput.DaysOfWeek, 3);
+			//var output = Helper.DateTimeHelper.FindDateRange_Monthly(dateInput.isEndDateDefined, dateInput.StartDateTime, dateInput.EndDateTime, dateInput.Occurance, dateInput.UntillDate, dateInput.frequency, dateInput.DaysOfWeek,24,false,dateInput.DayFormat, dateInput.DayName, dateInput.isWeekDay, dateInput.WeekDay);
+			var outPut = Helper.DateTimeHelper.FindDateRange_Yearly(true, dateInput.StartDateTime, dateInput.EndDateTime, 5, dateInput.UntillDate, Helper.Frequency.Yearly, "February", 20);
+
+			Console.WriteLine("-------------OutPut-----------------");
+            foreach (var item in outPut)
             {
                 Console.WriteLine("----"+item.StartDate+"-------"+item.EndDate+"----");
             }
